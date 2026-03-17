@@ -67,7 +67,6 @@ site:upwork.com
 site:freelancer.com
 
 # PRO Unlimited / Magnit
-site:prounlimited.com
 site:pro-unlimited.com
 site:magnitglobal.com
 site:directsource.magnitglobal.com
