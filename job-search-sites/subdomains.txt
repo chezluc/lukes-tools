@@ -30,30 +30,18 @@ site:recruitee.com "job title"
 site:peoplehr.net "job title"
 site:hirehive.com "job title"
 site:clearcompany.com "job title"
-
 site:jobs.sequoiacap.com "job title"
 site:jobs.a16z.com "job title"
 site:jobs.kpcb.com "job title"
 site:jobs.indexventures.com "job title"
 site:jobs.accel.com "job title"
 site:jobs.lightspeedvp.com "job title"
-
-# Startup Job Boards
 site:jobs.foundersfund.com "job title"
 site:ycombinator.com/companies "job title"
 site:jobs.techstars.com "job title"
-
-# Hidden File Types
-"job title" filetype:pdf
-"job title" filetype:docx
-"job title" filetype:pptx
-
-# Niche Job Boards
 site:dribbble.com/jobs "job title"
 site:coroflot.com/jobs "job title"
 site:angel.co "job title"
-
-# Remote Job Boards (2026 list)
 site:careerhound.io
 site:remotehub.com
 site:fiverr.com
@@ -64,10 +52,14 @@ site:authenticjobs.com
 site:toptal.com
 site:upwork.com
 site:freelancer.com
-
-# PRO Unlimited / Magnit
 site:pro-unlimited.com
 site:magnitglobal.com
 site:directsource.magnitglobal.com
 site:prounlimited.careercenter.smartsearch.plus
-https://prounlimited.careercenter.smartsearch.plus/
+
+
+
+# Hidden File Types
+"job title" filetype:pdf
+"job title" filetype:docx
+"job title" filetype:pptx
