@@ -1,0 +1,116 @@
+How to Use Boolean Strings:
+Boolean strings are special search commands you paste directly into Google. They help you uncover Production Designer jobs hidden on company career pages, startup job boards, or VC portfolio sites.
+
+Steps:
+
+1. Copy one of the Boolean strings below.
+
+2. Open Google.com in your browser.
+
+3. Paste the string into the search bar.
+
+4. Hit Enter and explore the results.
+
+5. Swap 'Production Designer' with other titles like 'UX Designer' or 'UI Designer' to widen your search.
+
+Adding a location filter in your Boolean string is simple. You just add the city, state, or region in quotes at the end of your search.
+
+
+
+
+
+
+site:talentnet.community
+site:willhire.com
+
+site:ashbyhq.com "Productionion Designer"
+
+site:paylocity.com "Production Designer"
+
+site:bamboohr.com "Production Designer"
+
+site:greenhouse.io "Production Designer"
+
+site:lever.co "Production Designer"
+
+site:workable.com "Production Designer"
+
+site:myworkdayjobs.com "Production Designer"
+
+site:icims.com "Production Designer"
+
+site:myworkdaysite.com "Production Designer"
+
+site:breezy.hr "Production Designer"
+
+site:gem.com "Production Designer"
+
+site:oraclecloud.com "Production Designer"
+
+site:pinpointhq.com "Production Designer"
+
+site:jobvite.com "Production Designer"
+
+site:dover.io "Production Designer"
+
+site:notion.site "Production Designer"
+
+site:builtin.com/job "Production Designer"
+
+site:rippling-ats.com "Production Designer"
+
+site:wellfound.com "Production Designer"
+
+site:workatastartup.com "Production Designer"
+
+site:keka.com "Production Designer"
+
+site:jobs.smartrecruiters.com "Production Designer"
+
+site:adp.com "Production Designer"
+
+site:successfactors.com "Production Designer"
+
+site:ultipro.com "Production Designer"
+
+site:jazzhr.com "Production Designer"
+
+site:recruitee.com "Production Designer"
+
+site:peoplehr.net "Production Designer"
+
+site:hirehive.com "Production Designer"
+
+site:clearcompany.com "Production Designer"
+
+VC Portfolio Job Boards
+site:jobs.sequoiacap.com "Production Designer"
+
+site:jobs.a16z.com "Production Designer"site:jobs.kpcb.com "Production Designer"
+
+site:jobs.indexventures.com "Production Designer"
+
+site:jobs.accel.com "Production Designer"
+
+site:jobs.lightspeedvp.com "Production Designer"
+
+Startup Job Boards
+site:jobs.foundersfund.com "Production Designer"
+
+site:ycombinator.com/companies "Production Designer"
+
+site:jobs.techstars.com "Production Designer"
+
+Hidden File Types
+"Production Designer" filetype:pdf
+
+"Production Designer" filetype:docx
+
+"Production Designer" filetype:pptx
+
+Niche Job Boards
+site:dribbble.com/jobs "Production Designer"
+
+site:coroflot.com/jobs "Production Designer"
+
+site:angel.co "Production Designer"
