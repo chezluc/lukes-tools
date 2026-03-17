@@ -31,7 +31,6 @@ site:peoplehr.net "job title"
 site:hirehive.com "job title"
 site:clearcompany.com "job title"
 
-# VC Portfolio Job Boards
 site:jobs.sequoiacap.com "job title"
 site:jobs.a16z.com "job title"
 site:jobs.kpcb.com "job title"
