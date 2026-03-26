@@ -13,6 +13,9 @@ An architectural pattern for using `tmux` as a communication bridge between AI a
 ### 🔎 [Job Search Sites](./job-search-sites/README.md)
 A plain-text list of sites used as inputs for job-search workflows.
 
+### 🔤 [Alfred Workflows](./alfred-workflows/README.md)
+Custom Alfred 5 workflows for macOS automation, including an **Add Typinator Snippet** workflow that creates text expansion snippets directly from Alfred using Typinator's AppleScript dictionary.
+
 ---
 
 ## 🚀 Principles
