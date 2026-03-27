@@ -1,0 +1,15 @@
+{
+  "name": "typinator-cli",
+  "version": "1.0.0",
+  "description": "CLI tool for managing Typinator snippets via AppleScript. Designed for AI agents and humans.",
+  "main": "index.js",
+  "bin": {
+    "typinator-cli": "./index.js"
+  },
+  "scripts": {
+    "test": "node index.js list --set 2026.main"
+  },
+  "keywords": ["typinator", "snippets", "text-expansion", "macos", "applescript", "cli"],
+  "author": "Luke Carter",
+  "license": "MIT"
+}

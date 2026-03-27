@@ -16,6 +16,9 @@ A plain-text list of sites used as inputs for job-search workflows.
 ### 🔤 [Alfred Workflows](./alfred-workflows/README.md)
 Custom Alfred 5 workflows for macOS automation, including an **Add Typinator Snippet** workflow that creates text expansion snippets directly from Alfred using Typinator's AppleScript dictionary.
 
+### ⌨️ [Typinator CLI](./typinator-cli/README.md)
+A Node.js CLI for managing [Typinator](https://www.ergonis.com/typinator) snippets from the terminal. Add, search, list, delete snippets and find/remove duplicates — all via JSON output. Built for AI agent integration.
+
 ---
 
 ## 🚀 Principles
