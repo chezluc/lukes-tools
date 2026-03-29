@@ -103,6 +103,10 @@ typinator-cli list --set "ai.main"
 
 The CLI uses `osascript` to communicate with Typinator's AppleScript dictionary. Typinator must be running for commands to work. No files are modified directly — all operations go through Typinator's scripting interface, so changes are immediately live.
 
+## Agent Guide
+
+See [AGENT-GUIDE.md](./AGENT-GUIDE.md) for a comprehensive guide on using Typinator programmatically, including direct AppleScript examples, multiline expansion handling, cleanup workflows, and gotchas.
+
 ## License
 
 MIT
