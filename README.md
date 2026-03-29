@@ -10,6 +10,9 @@ Consistent patterns and practices for writing robust AppleScripts that interact 
 ### 📟 [tmux Subagent Pattern](./tmux-subagent/README.md)
 An architectural pattern for using `tmux` as a communication bridge between AI agents (like Claude Code and Gemini CLI), enabling multi-agent orchestration without custom APIs.
 
+### 💬 [imsg-bridge](./imsg-bridge/README.md)
+A macOS menu bar app that exposes a localhost HTTP API for iMessage. Other programs can send/read messages without needing Full Disk Access — only imsg-bridge needs it.
+
 ### 🔎 [Job Search Sites](./job-search-sites/README.md)
 A plain-text list of sites used as inputs for job-search workflows.
 
