@@ -1,6 +1,6 @@
 # General Chrome Console Bridge Startup
 
-This version is bridge-tab only. It does not use a popup or side panel.
+Quick setup guide for getting the bridge running.
 
 ## Session checklist
 

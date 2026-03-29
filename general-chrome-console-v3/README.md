@@ -2,14 +2,12 @@
 
 Manifest V3 Chrome extension for running JavaScript on target tabs and capturing structured results, logs, and errors through a dedicated `bridge.html` tab.
 
-## What this version is
+## How it works
 
-- No popup
-- No side panel
-- A dedicated `bridge.html` tab that polls the local bridge server
-- Background service worker that runs snippets with `chrome.scripting.executeScript`
-- Local bridge server at `http://127.0.0.1:4471`
-- A minimal build that is intended to be reused by other agents
+- A dedicated `bridge.html` tab polls the local bridge server for commands
+- Background service worker executes snippets via `chrome.debugger`
+- Local bridge server at `http://127.0.0.1:4471` queues and returns results
+- Supports `RUN_SNIPPET` and `OPEN_URL` commands with background tab reuse
 
 ## Development
 
