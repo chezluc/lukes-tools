@@ -21,13 +21,13 @@ type <abbreviation> <expansion text>
 3. Press Enter to create the snippet in the `2026.main` rule set
 4. Typinator opens Quick Search to confirm the new snippet
 
-**Step 1:** Type the abbreviation
+**Step 1:** Type the abbreviation — Alfred prompts for the expansion
 
-![Step 1](./screenshot-step1.png)
+![Step 1](./screenshot-step2.png)
 
 **Step 2:** Add the expansion — preview shows before creating
 
-![Step 2](./screenshot-step2.png)
+![Step 2](./screenshot-step1.png)
 
 ### Requirements
 
