@@ -19,6 +19,9 @@ A plain-text list of sites used as inputs for job-search workflows.
 ### 🔤 [Alfred Workflows](./alfred-workflows/README.md)
 Custom Alfred 5 workflows for macOS automation, including an **Add Typinator Snippet** workflow that creates text expansion snippets directly from Alfred using Typinator's AppleScript dictionary.
 
+### 🔬 [Deep Research](./deep-research/README.md)
+A Claude Code skill that orchestrates multi-engine deep research sessions. Launches DeepSeek and Gemini CLI as primary research engines via tmux, or runs 5 parallel Claude subagents internally. Synthesizes findings into structured reports with CSV/Google Sheets output.
+
 ### ⌨️ [Typinator CLI](./typinator-cli/README.md)
 A Node.js CLI for managing [Typinator](https://www.ergonis.com/typinator) snippets from the terminal. Add, search, list, delete snippets and find/remove duplicates — all via JSON output. Built for AI agent integration.
 
