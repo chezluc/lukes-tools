@@ -25,6 +25,9 @@ A Claude Code skill that orchestrates multi-engine deep research sessions. Launc
 ### ⌨️ [Typinator CLI](./typinator-cli/README.md)
 A Node.js CLI for managing [Typinator](https://www.ergonis.com/typinator) snippets from the terminal. Add, search, list, delete snippets and find/remove duplicates — all via JSON output. Built for AI agent integration.
 
+### 🖖 [LCARS — Star Trek TNG Computer Mode](./lcars/README.md)
+A Claude Code skill inspired by [caveman](https://github.com/JuliusBrussee/caveman) that makes the agent respond like the Enterprise-D computer. Cuts ~70% of output tokens with precise, declarative, data-first responses. Language patterns derived from actual TNG episode transcripts.
+
 ---
 
 ## 🚀 Principles
