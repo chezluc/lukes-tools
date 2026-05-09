@@ -1,0 +1,7 @@
+node_modules/
+dist/
+dist-canary/
+dist-chrome/
+logs/
+*.log
+.DS_Store

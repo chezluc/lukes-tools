@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Chrome Console Bridge Agent</title>
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      margin: 0;
+      padding: 24px;
+      background: #111827;
+      color: #e5e7eb;
+    }
+    .card {
+      max-width: 920px;
+      margin: 0 auto;
+      padding: 20px;
+      background: #1f2937;
+      border: 1px solid #374151;
+      border-radius: 12px;
+    }
+    h1 {
+      margin: 0 0 12px;
+      font-size: 20px;
+    }
+    p {
+      margin: 0 0 16px;
+      color: #cbd5e1;
+    }
+    .status {
+      display: grid;
+      gap: 8px;
+      margin-bottom: 20px;
+      font-size: 14px;
+    }
+    .config {
+      display: grid;
+      gap: 10px;
+      margin-bottom: 20px;
+      padding: 14px;
+      background: #111827;
+      border: 1px solid #374151;
+      border-radius: 8px;
+    }
+    .config-row {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    details {
+      border-top: 1px solid #374151;
+      padding-top: 10px;
+    }
+    summary {
+      cursor: pointer;
+      color: #cbd5e1;
+      user-select: none;
+    }
+    label {
+      font-size: 13px;
+      color: #cbd5e1;
+    }
+    input {
+      flex: 1 1 320px;
+      min-width: 240px;
+      padding: 9px 11px;
+      border-radius: 6px;
+      border: 1px solid #4b5563;
+      background: #020617;
+      color: #e5e7eb;
+    }
+    button {
+      padding: 9px 12px;
+      border: 1px solid #475569;
+      border-radius: 6px;
+      background: #1d4ed8;
+      color: #eff6ff;
+      cursor: pointer;
+    }
+    button.secondary {
+      background: #1f2937;
+    }
+    code, pre {
+      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    }
+    pre {
+      margin: 0;
+      padding: 14px;
+      background: #020617;
+      color: #93c5fd;
+      border-radius: 8px;
+      overflow: auto;
+      min-height: 220px;
+      white-space: pre-wrap;
+    }
+    .ok { color: #86efac; }
+    .bad { color: #fca5a5; }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>Chrome Console Bridge Agent</h1>
+    <p>Keep this page open in Chrome. Duplicate this tab to add more workers for the same browser queue.</p>
+    <div class="config">
+      <div>Routing: <code id="bridgeConfigStatus">loading</code></div>
+      <div>Auto bridge URL: <code id="bridgeServerUrl">loading</code></div>
+      <div>Worker tab: <code id="workerId">loading</code></div>
+      <details>
+        <summary>Advanced override</summary>
+        <div class="config-row" style="margin-top: 10px;">
+          <label for="bridgeServerInput">Bridge server URL</label>
+          <input id="bridgeServerInput" type="text" spellcheck="false" />
+          <button id="saveBridgeConfig">Save</button>
+          <button id="resetBridgeConfig" class="secondary" type="button">Reset</button>
+        </div>
+      </details>
+    </div>
+    <div class="status">
+      <div>Browser instance: <code id="bridgeInstance">loading</code></div>
+      <div>Bridge server: <span id="serverStatus" class="bad">disconnected</span></div>
+      <div>Polling: <span id="pollStatus">idle</span></div>
+      <div>Last command: <code id="lastCommand">none</code></div>
+      <div>Last result: <code id="lastResult">none</code></div>
+    </div>
+    <pre id="logOutput">Agent bridge starting…</pre>
+  </div>
+  <script src="bridge.js" type="module"></script>
+</body>
+</html>
