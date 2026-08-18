@@ -1,0 +1,181 @@
+#!/bin/bash
+# Chrome Console Bridge v5 CLI — install/status/doctor/logs.
+# Works on any machine: all paths are derived from this script's location
+# and $HOME at install time. Run `bridge install` once per computer.
+
+set -u
+
+SOURCE="${BASH_SOURCE[0]}"
+while [ -L "$SOURCE" ]; do
+  DIR="$(cd "$(dirname "$SOURCE")" && pwd)"
+  SOURCE="$(readlink "$SOURCE")"
+  # Relative symlink targets resolve against the symlink's own directory.
+  case "$SOURCE" in /*) ;; *) SOURCE="$DIR/$SOURCE" ;; esac
+done
+BRIDGE_DIR="$(cd "$(dirname "$SOURCE")/.." && pwd)"
+
+LOG_DIR="$HOME/Library/Logs/chrome-bridge"
+AGENT_DIR="$HOME/Library/LaunchAgents"
+NODE_BIN="$(command -v node || true)"
+EXTENSION_ID="$(sed -n 's/.*"id": "\(.*\)".*/\1/p' "$BRIDGE_DIR/scripts/extension-id.json" 2>/dev/null)"
+
+label() { echo "com.chezluc.chrome-bridge-v5.$1"; }
+port_for() { if [ "$1" = "canary" ]; then echo 4471; else echo 4472; fi; }
+
+write_plist() {
+  local instance="$1" port
+  port="$(port_for "$instance")"
+  cat > "$AGENT_DIR/$(label "$instance").plist" <<PLIST
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+  <key>Label</key><string>$(label "$instance")</string>
+  <key>ProgramArguments</key>
+  <array>
+    <string>${NODE_BIN}</string>
+    <string>${BRIDGE_DIR}/bridge/server.mjs</string>
+  </array>
+  <key>EnvironmentVariables</key>
+  <dict>
+    <key>BRIDGE_PORT</key><string>${port}</string>
+    <key>BRIDGE_INSTANCE</key><string>${instance}</string>
+  </dict>
+  <key>RunAtLoad</key><true/>
+  <key>KeepAlive</key><true/>
+  <key>StandardOutPath</key><string>${LOG_DIR}/${instance}.log</string>
+  <key>StandardErrorPath</key><string>${LOG_DIR}/${instance}.log</string>
+</dict>
+</plist>
+PLIST
+}
+
+health() {
+  curl -s -m 2 "http://127.0.0.1:$(port_for "$1")/health"
+}
+
+cmd_install() {
+  if [ -z "$NODE_BIN" ]; then
+    echo "ERROR: node not found on PATH. Install node, then re-run: bridge install" >&2
+    exit 1
+  fi
+  mkdir -p "$LOG_DIR" "$AGENT_DIR"
+  for instance in canary chrome; do
+    write_plist "$instance"
+    launchctl bootout "gui/$(id -u)/$(label "$instance")" 2>/dev/null
+    launchctl bootstrap "gui/$(id -u)" "$AGENT_DIR/$(label "$instance").plist"
+    launchctl kickstart "gui/$(id -u)/$(label "$instance")" 2>/dev/null
+    echo "installed + started: $(label "$instance") (port $(port_for "$instance"))"
+  done
+  sleep 1
+  cmd_status
+}
+
+cmd_uninstall() {
+  for instance in canary chrome; do
+    launchctl bootout "gui/$(id -u)/$(label "$instance")" 2>/dev/null
+    rm -f "$AGENT_DIR/$(label "$instance").plist"
+    echo "removed: $(label "$instance")"
+  done
+}
+
+cmd_status() {
+  for instance in canary chrome; do
+    local_health="$(health "$instance")"
+    if [ -n "$local_health" ]; then
+      echo "$instance (:$(port_for "$instance")): $local_health"
+    else
+      echo "$instance (:$(port_for "$instance")): SERVER DOWN — run: bridge up"
+    fi
+  done
+}
+
+cmd_up() {
+  local need_install=0
+  for instance in canary chrome; do
+    [ -f "$AGENT_DIR/$(label "$instance").plist" ] || need_install=1
+  done
+  if [ "$need_install" = 1 ]; then
+    cmd_install
+    return
+  fi
+  for instance in canary chrome; do
+    if [ -z "$(health "$instance")" ]; then
+      launchctl kickstart -k "gui/$(id -u)/$(label "$instance")" 2>/dev/null \
+        || launchctl bootstrap "gui/$(id -u)" "$AGENT_DIR/$(label "$instance").plist" 2>/dev/null
+    fi
+  done
+  sleep 1
+  cmd_status
+}
+
+cmd_doctor() {
+  echo "=== Chrome Console Bridge v5 doctor ==="
+  echo "bridge dir:   $BRIDGE_DIR"
+  echo "node:         ${NODE_BIN:-MISSING — install node}"
+  echo "extension id: ${EXTENSION_ID:-unknown}"
+  echo ""
+  for instance in canary chrome; do
+    port="$(port_for "$instance")"
+    echo "--- $instance (port $port) ---"
+    h="$(health "$instance")"
+    if [ -z "$h" ]; then
+      echo "  server: DOWN"
+      if [ -f "$AGENT_DIR/$(label "$instance").plist" ]; then
+        echo "  fix:    launchctl kickstart -k gui/$(id -u)/$(label "$instance")  (or: bridge up)"
+      else
+        echo "  fix:    bridge install"
+      fi
+      continue
+    fi
+    echo "  server: UP"
+    workers="$(echo "$h" | sed -n 's/.*"workersOnline":\([0-9]*\).*/\1/p')"
+    if [ "${workers:-0}" -gt 0 ]; then
+      echo "  extension worker: CONNECTED ($workers online) — fully operational"
+    else
+      case "$instance" in
+        canary) app="Google Chrome Canary";;
+        chrome) app="Google Chrome";;
+      esac
+      echo "  extension worker: NOT POLLING"
+      echo "  fix 1:  make sure $app is running (open -g -a \"$app\" keeps it in the background)"
+      echo "  fix 2:  check chrome://extensions — 'Chrome Console Bridge v5' must be enabled;"
+      echo "          its worker tab (chrome-extension://$EXTENSION_ID/bridge.html) auto-opens."
+      echo "  fix 3:  if never installed: load unpacked from $BRIDGE_DIR/dist-$instance"
+    fi
+  done
+}
+
+cmd_logs() {
+  if [ "${2:-}" = "-f" ]; then
+    tail -f "$LOG_DIR"/*.log
+  else
+    tail -n 40 "$LOG_DIR"/*.log
+  fi
+}
+
+case "${1:-help}" in
+  install)   cmd_install ;;
+  uninstall) cmd_uninstall ;;
+  status)    cmd_status ;;
+  up)        cmd_up ;;
+  doctor)    cmd_doctor ;;
+  logs)      cmd_logs "$@" ;;
+  *)
+    cat <<HELP
+Chrome Console Bridge v5
+
+usage: bridge <command>
+
+  install     install + start launchd KeepAlive servers (canary :4471, chrome :4472)
+  up          idempotent: ensure both servers are running (installs if needed)
+  status      one-line health for both servers
+  doctor      full diagnosis with the exact fix for anything broken
+  logs [-f]   show (or follow) server logs
+  uninstall   stop and remove the launchd services
+
+Servers restart automatically at login and after crashes. You should never
+need to start them manually again.
+HELP
+    ;;
+esac

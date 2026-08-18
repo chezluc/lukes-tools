@@ -1,0 +1,20 @@
+{
+  "name": "general-chrome-console-bridge-v5",
+  "version": "0.5.0",
+  "private": true,
+  "description": "Background-first, session-aware Chrome console bridge with always-on launchd servers.",
+  "scripts": {
+    "bridge": "node ./bridge/server.mjs",
+    "bridge:canary": "BRIDGE_PORT=4471 BRIDGE_INSTANCE=canary node ./bridge/server.mjs",
+    "bridge:chrome": "BRIDGE_PORT=4472 BRIDGE_INSTANCE=chrome node ./bridge/server.mjs",
+    "build": "npm run build:canary && npm run build:chrome",
+    "build:canary": "BRIDGE_PORT=4471 BRIDGE_INSTANCE=canary BRIDGE_BROWSER_LABEL='Google Chrome Canary' BRIDGE_EXTENSION_NAME='Chrome Console Bridge v5 (Canary)' DIST_DIR=dist-canary node ./scripts/build.mjs",
+    "build:chrome": "BRIDGE_PORT=4472 BRIDGE_INSTANCE=chrome BRIDGE_BROWSER_LABEL='Google Chrome' BRIDGE_EXTENSION_NAME='Chrome Console Bridge v5 (Chrome)' DIST_DIR=dist-chrome node ./scripts/build.mjs",
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@types/chrome": "^0.1.29",
+    "esbuild": "^0.25.1",
+    "typescript": "^5.8.2"
+  }
+}

@@ -1,0 +1,8 @@
+node_modules/
+dist-canary/
+dist-chrome/
+*.log
+.DS_Store
+# Private half of the extension key pair — the public key in
+# scripts/extension-id.json is all that's needed to build.
+scripts/extension-key.pem
