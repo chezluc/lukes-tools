@@ -13,6 +13,9 @@ An architectural pattern for using `tmux` as a communication bridge between AI a
 ### 💬 [imsg-bridge](./imsg-bridge/README.md)
 A macOS menu bar app that exposes a localhost HTTP API for iMessage. Other programs can send/read messages without needing Full Disk Access — only imsg-bridge needs it.
 
+### 🌐 [Chrome Console Bridge v6 for Windows](./general-chrome-console-bridge-v6-pc/README.md)
+A session-aware local bridge for agent automation in real signed-in Chrome and Chrome Canary tabs, with ready-to-load extension builds and complete Windows setup instructions. Older bridge versions remain available in their own directories.
+
 ### 🔎 [Job Search Sites](./job-search-sites/README.md)
 A plain-text list of sites used as inputs for job-search workflows.
 

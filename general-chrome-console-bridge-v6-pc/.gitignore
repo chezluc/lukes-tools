@@ -1,0 +1,7 @@
+node_modules/
+# The ready-to-load dist-canary and dist-chrome builds are intentionally published.
+*.log
+.DS_Store
+# Private half of the extension key pair — the public key in
+# scripts/extension-id.json is all that's needed to build.
+scripts/extension-key.pem

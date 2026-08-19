@@ -1,0 +1,29 @@
+{
+  "manifest_version": 3,
+  "name": "Chrome Console Bridge v6 (Canary)",
+  "version": "0.6.0",
+  "description": "Background-first agent bridge for Google Chrome Canary on http://127.0.0.1:4471.",
+  "permissions": [
+    "activeTab",
+    "tabs",
+    "debugger",
+    "scripting",
+    "storage"
+  ],
+  "host_permissions": [
+    "<all_urls>",
+    "http://127.0.0.1/*",
+    "http://localhost/*"
+  ],
+  "background": {
+    "service_worker": "background.js",
+    "type": "module"
+  },
+  "icons": {
+    "16": "icons/icon16.png",
+    "32": "icons/icon32.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAwFbnUG3rJ4Sh66HadOT8D2/qJLmh3hh8C+bBIi7Gxp3eD8TE4NhIEiaG7NyA4cFrfaP3MROptW5L1fHVumpu9fFItoH8VOqZqKv79bMmRXH2Yij1kXGwGBgPcWjlxlZBl4tBiJ7oO3hlQyfCWEivh9KsT779f4/rJEQ7v1LME7i+xgfGzxaFpaHUW9+3AsHItEmKaEP7kuAnhwiThVlw8rU90jmHYosMV/p5MOq692q/Yk1OUEtU0NH2eGcE35XczyQg0f52xaHfTWMKW0Ri8kbxV/j9t3GjVeznHgJYyf5disVK23czh4PI7aLJNOPJV5jq+WyJCuChAuPmpwK+bQIDAQAB"
+}

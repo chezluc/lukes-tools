@@ -1,0 +1,20 @@
+{
+  "name": "general-chrome-console-bridge-v6-pc",
+  "version": "0.6.0",
+  "private": true,
+  "description": "Background-first, session-aware Chrome console bridge for Windows.",
+  "scripts": {
+    "bridge": "node ./bridge/server.mjs",
+    "bridge:canary": "node ./scripts/start-canary.mjs",
+    "bridge:chrome": "node ./scripts/start-chrome.mjs",
+    "build": "npm run build:canary && npm run build:chrome",
+    "build:canary": "node ./scripts/build-canary.mjs",
+    "build:chrome": "node ./scripts/build-chrome.mjs",
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@types/chrome": "^0.1.29",
+    "esbuild": "^0.25.1",
+    "typescript": "^5.8.2"
+  }
+}
